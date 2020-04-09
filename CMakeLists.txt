@@ -146,6 +146,13 @@ target_compile_definitions(${STATIC_LIB_NAME} PUBLIC
 
 set_property(TARGET ${STATIC_LIB_NAME} PROPERTY CXX_STANDARD 17)
 
+# POSITION_INDEPENDENT_CODE for -fPIC
+# -fPIC may be used to link static library into dynamic one
+# Position-independent code requires special support,
+# and therefore works only on certain machines.
+# see https://akkadia.org/drepper/dsohowto.pdf
+set_property(TARGET ${STATIC_LIB_NAME} PROPERTY POSITION_INDEPENDENT_CODE ON)
+
 set(DEBUG_LIBRARY_SUFFIX "-d")
 set_target_properties(${STATIC_LIB_NAME}
   PROPERTIES
