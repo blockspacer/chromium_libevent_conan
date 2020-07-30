@@ -30,6 +30,8 @@
 #include "event.h"
 #include "evutil.h"
 
+#include <limits.h>
+
 typedef struct min_heap
 {
     struct event** p;
@@ -57,7 +59,7 @@ int min_heap_elem_greater(struct event *a, struct event *b)
 
 void min_heap_ctor(min_heap_t* s) { s->p = 0; s->n = 0; s->a = 0; }
 void min_heap_dtor(min_heap_t* s) { if(s->p) free(s->p); }
-void min_heap_elem_init(struct event* e) { e->min_heap_idx = -1; }
+void min_heap_elem_init(struct event* e) { e->min_heap_idx = (unsigned int)-1; }
 int min_heap_empty(min_heap_t* s) { return 0u == s->n; }
 unsigned min_heap_size(min_heap_t* s) { return s->n; }
 struct event* min_heap_top(min_heap_t* s) { return s->n ? *s->p : 0; }
@@ -76,7 +78,7 @@ struct event* min_heap_pop(min_heap_t* s)
     {
         struct event* e = *s->p;
         min_heap_shift_down_(s, 0u, s->p[--s->n]);
-        e->min_heap_idx = -1;
+        e->min_heap_idx = (unsigned int)-1;
         return e;
     }
     return 0;
@@ -97,7 +99,7 @@ int min_heap_erase(min_heap_t* s, struct event* e)
              min_heap_shift_up_(s, e->min_heap_idx, last);
         else
              min_heap_shift_down_(s, e->min_heap_idx, last);
-        e->min_heap_idx = -1;
+        e->min_heap_idx = (unsigned int)-1;
         return 0;
     }
     return -1;
