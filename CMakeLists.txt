@@ -120,12 +120,12 @@ endif(ENABLE_UBSAN)
 
 if(COMPILE_WITH_LLVM_TOOLS)
   message(STATUS
-    "Using COMPILE_WITH_LLVM_TOOLS")
+    "(chromium_libevent_conan) Using COMPILE_WITH_LLVM_TOOLS")
   # force change CMAKE_*_COMPILER and CMAKE_LINKER to clang from conan
   compile_with_llvm_tools() # from cmake_helper_utils (conan package)
 else(COMPILE_WITH_LLVM_TOOLS)
   message(STATUS
-    "Disabled COMPILE_WITH_LLVM_TOOLS")
+    "(chromium_libevent_conan) Disabled COMPILE_WITH_LLVM_TOOLS")
 endif(COMPILE_WITH_LLVM_TOOLS)
 
 find_package(cmake_platform_detection REQUIRED)
