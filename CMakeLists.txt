@@ -218,7 +218,7 @@ endif()
 add_relative_include_dir(${STATIC_LIB_NAME} PUBLIC PUBLIC "base/third_party/libevent/compat")
 
 if(TARGET_EMSCRIPTEN)
-  # use PROPERTY CXX_STANDARD 17
+  # use PROPERTY compiler.cppstd
 else()
   target_compile_features(${STATIC_LIB_NAME}
     PUBLIC cxx_auto_type
@@ -232,7 +232,7 @@ target_compile_definitions(${STATIC_LIB_NAME} PUBLIC
   ${LIBEVENT_DEFINES}
 )
 
-set_property(TARGET ${STATIC_LIB_NAME} PROPERTY CXX_STANDARD 17)
+#set_property(TARGET ${STATIC_LIB_NAME} PROPERTY CXX_STANDARD 17)
 
 # POSITION_INDEPENDENT_CODE for -fPIC
 # -fPIC may be used to link static library into dynamic one
